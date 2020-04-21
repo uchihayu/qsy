@@ -7,5 +7,5 @@ export function get(url, params = {}, options = {}) {
 
 /** post方法 */
 export function post(url, data) {
-  return axios.$post(url, data)
+  return axios.post(url, data)
 }
