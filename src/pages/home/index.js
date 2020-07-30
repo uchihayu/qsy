@@ -7,6 +7,16 @@ import {get} from '@/api/ajax'
 import ExamManage from "@/pages/exam/ExamManage.js";
 
 const { Header, Sider, Content } = Layout
+
+class TopHeader extends React.Component {
+  render() {
+    return (
+      <Header style={ {color: 'white', 'textAlign': 'right'} }>
+        顶部导航
+      </Header>
+    )
+  }
+}
 export default class Home extends React.Component {
   componentDidMount() {
     get('/login/checkLogin')
@@ -16,9 +26,7 @@ export default class Home extends React.Component {
   render() {
     return (
       <Layout style={{height:' 100%'}}>
-        <Header>
-          顶部导航
-        </Header>
+        <TopHeader />
         <Layout>
           <Sider width={200}>
             侧边导航

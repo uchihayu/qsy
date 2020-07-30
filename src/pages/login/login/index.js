@@ -1,10 +1,14 @@
 import React from "react"
-import { Button, Form, Input, message } from 'antd'
-import './login.css'
+import { Icon, Button, Form, Input, message } from 'antd'
+
+import './index.less'
 import {post} from '@/api/ajax'
 
 
 class LoginForm extends React.Component {
+  componentDidUpdate() {
+    console.log(this.props)
+  }
 
   handleSubmit = (e) => {
     e.preventDefault()
@@ -42,33 +46,37 @@ class LoginForm extends React.Component {
       <Form 
         {...layout}
         name="login"
+        wrapperCol={{span:24 }}
+        className="form-area"
         onSubmit={this.handleSubmit}
       >
-        <Form.Item 
-          label="用户名"
-        >
+        <Form.Item                 >
           {getFieldDecorator('account', {
             rules: rulesAccount,
             validateTrigger: 'onBlur'
           })(
-            <Input allowClear/>
+            <Input prefix={ <Icon type="user"/> } size="large" placeholder="请输入手机号或账号" allowClear/>
           )}
         </Form.Item>
         <Form.Item 
-          label="密码"
         >
           {getFieldDecorator('password', {
             rules: rulesPwd,
             validateTrigger: 'onBlur'
           })(
-            <Input type="password" allowClear/>
+            <Input
+              prefix={ <Icon type='lock' /> } 
+              type="password"
+              size="large"
+              placeholder="请输入密码"
+              allowClear/>
           )}
         </Form.Item>
-        <Form.Item>
-          <Button type="primary" htmlType="submit">
+        {/* <Form.Item> */}
+          <Button type="primary" htmlType="submit" block size="large">
             登录
           </Button>
-        </Form.Item>
+        {/* </Form.Item> */}
       </Form>
     )
     
@@ -77,13 +85,37 @@ class LoginForm extends React.Component {
 
 const WrappedLogin = Form.create()(LoginForm)
 
+class BottomBar extends React.Component{
+  clickRegist = () => {
+    this.props.history.push('/regist')
+  }
+  render() {
+    return (
+      <div className="bottom-bar">
+        <Button type="link" size="small" onClick={ this.clickRegist }>免费注册</Button>
+        <Button type="link" size="small">忘记密码？</Button>
+        <div className="right">
+          <Button icon="wechat" >微信登录</Button>
+          <Button icon="qq" >QQ登录</Button>
+        </div>
+      </div>
+
+    )
+  }
+    
+  
+}
+
 export default class Login extends React.Component {
   render () {
     return (
       <div className='login'>
-        <div className="login-block">
-          <h2>登录</h2>
-          <WrappedLogin/>
+        <div className="main">
+          <div className="logo-banner">
+            <img src={require('@img/logo-banner.png')} alt="logo"/>
+          </div>
+          <WrappedLogin { ...this.props } />
+          <BottomBar history={ this.props.history } />
         </div>
       </div>
     )
