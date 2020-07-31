@@ -11,8 +11,8 @@ class App extends React.Component {
     return (
       <Router>
         <Switch>
-          <Route path="/login" exact component={Login} ></Route>
           <Route path="/regist" exact component={Regist} ></Route>
+          <Route path="/login" exact component={Login} ></Route>
           <Route path='/app' component={MainApp}></Route>
           <Redirect to="/login"></Redirect>
         </Switch>

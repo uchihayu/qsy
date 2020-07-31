@@ -2,31 +2,38 @@ import React from "react"
 import { Icon, Button, Form, Input, message } from 'antd'
 
 import './index.less'
-import {post} from '@/api/ajax'
+import { get, post } from '@/api/ajax'
 
 
 class LoginForm extends React.Component {
-  componentDidUpdate() {
-    console.log(this.props)
+
+  componentDidMount() {
+    this.checkLogin()
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
-    console.log(this.props)
     this.props.form.validateFields((err, values) => {
       if (!err) {
         post('/login/login', values)
           .then(response => {
-            if (response.code === '200') {
+            // if (response.code === '200') {
               message.info('登录成功')
               this.props.history.push('/app')
-            } else {
-              message.warn('账号或密码错误，请重试')
-            }
+            // } else {
+            //   message.warn('账号或密码错误，请重试')
+            // }
           })
 
       }
     })
+  }
+
+  checkLogin = () => {
+    get('/login/checkLogin')
+      .then(body => {
+        this.props.history.push('/app')
+      })
   }
 
   render() {
@@ -50,7 +57,7 @@ class LoginForm extends React.Component {
         className="form-area"
         onSubmit={this.handleSubmit}
       >
-        <Form.Item                 >
+        <Form.Item >
           {getFieldDecorator('account', {
             rules: rulesAccount,
             validateTrigger: 'onBlur'
