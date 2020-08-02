@@ -19,7 +19,7 @@ class LoginForm extends React.Component {
           .then(response => {
             // if (response.code === '200') {
               message.info('登录成功')
-              this.props.history.push('/app')
+              this.props.history.push('/exam/exams')
             // } else {
             //   message.warn('账号或密码错误，请重试')
             // }
@@ -32,7 +32,7 @@ class LoginForm extends React.Component {
   checkLogin = () => {
     get('/login/checkLogin')
       .then(body => {
-        this.props.history.push('/app')
+        this.props.history.push('/exam')
       })
   }
 

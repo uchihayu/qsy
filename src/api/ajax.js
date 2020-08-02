@@ -1,5 +1,6 @@
 import axios from "axios"
 import { message } from 'antd'
+import errorFunction from './errorFunction'
 
 const service = axios.create({
   baseURL: process.env.NODE_ENV === "production" ? " " : "http://120.27.214.61:7001/",
@@ -34,7 +35,7 @@ const handleResponse = (response) => {
   if (code === '200') {
     return Promise.resolve(body)
   } else {
-    // errorTip(response.data, ref)
+    errorFunction(response.data)
     return Promise.reject(response.data)
   }
 }

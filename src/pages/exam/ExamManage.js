@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Table, Tag, Button, Modal, Form, Input, Radio, message } from 'antd'
-import { get, post } from "@/api/ajax";
+import { get } from "@/api/ajax";
 
 class MainTable extends Component {
   state = {
@@ -61,7 +61,7 @@ class MainTable extends Component {
               <Button type="primary" size="small">发布</Button>
             </>)
       },
-      { title: '分类', dataIndex: 'classifyName',  width: 150 },
+      { title: '分类', dataIndex: 'classifyName',  width: 120 },
       { title: '试卷类型', dataIndex: 'paperType',  width: 100, render: type => type === 1 ? '公开试卷' : '非公开试卷' },
       { title: '出题类型', dataIndex: 'generateType',  width: 80, render: type => type === 1 ? '固定试卷' : '随机试卷' },
       { title: '创建时间', dataIndex: 'createTime',  width: 160 },

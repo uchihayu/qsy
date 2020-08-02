@@ -11,3 +11,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/** 通用样式 **/
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.dpib {
+  display: inline-block;
+}
